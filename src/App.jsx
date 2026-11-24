@@ -1,11 +1,7 @@
-import Nav from "./components/Header"
+import AppRoutes from "./routes/AppRoutes"
 
 const App = () => {
-  return (
-    <div>
-      <Nav />
-    </div>
-  )
+  return <AppRoutes />
 }
 
 export default App

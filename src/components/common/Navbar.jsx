@@ -1,8 +1,24 @@
+import { Link, NavLink } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
-  )
-}
+    <nav className="navbar">
+      <Link to="/" className="navbar-logo">
+        Namla<span>Stay</span>
+      </Link>
 
-export default Navbar
+      <div className="navbar-links">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/hotels">Hotels</NavLink>
+        <NavLink to="/add-hotel">Add Hotels</NavLink>
+      </div>
+
+      <Link to="login" className="navbar-login">
+        Login
+      </Link>
+    </nav>
+  );
+};
+
+export default Navbar;
