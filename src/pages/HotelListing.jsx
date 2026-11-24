@@ -9,7 +9,7 @@ const HotelListing = () => {
   const [priceRange, setPriceRange] = useState("all");
   const [sortBy, setSortBy] = useState("recommended");
   const [currentPage, setCurrentPage] = useState(1);
-  const {hotels} = useOutletContext()
+  const {hotels, setHotels} = useOutletContext()
 
   const hotelsPerPage = 4;
 
@@ -35,6 +35,16 @@ const HotelListing = () => {
     if (sortBy === "rating") return b.rating - a.rating;
     return a.id - b.id;
   });
+
+  const handleDelete = (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this hotel?"
+    )
+
+    if(confirmDelete) {
+      setHotels(prevHotels => prevHotels.filter(hotel => hotel.id !== id))
+    }
+  }
 
   const totalPages = Math.ceil(sortedHotels.length / hotelsPerPage);
   const startIndex = (currentPage - 1) * hotelsPerPage;
@@ -90,7 +100,11 @@ const HotelListing = () => {
 
           <div className="hotel-grid">
             {currentHotels.map((hotel) => (
-              <HotelCard key={hotel.id} hotel={hotel} />
+              <HotelCard 
+              key={hotel.id} 
+              hotel={hotel}
+              onDelete={handleDelete} 
+              />
             ))}
           </div>
 

@@ -1,6 +1,8 @@
 import "./HotelCard.css";
 
-const HotelCard = ({ hotel }) => {
+import { Link } from "react-router-dom";
+
+const HotelCard = ({ hotel, onDelete }) => {
   return (
     <div className="hotel-card">
       <img src={hotel.image} alt={hotel.name} />
@@ -8,13 +10,25 @@ const HotelCard = ({ hotel }) => {
       <div className="hotel-card-info">
         <span className="hotel-category">{hotel.category}</span>
 
-        <h3>{hotel.name}</h3>
+        <Link to={`/hotels/${hotel.id}`} className="hotel-name-link">
+          {hotel.name}
+        </Link>
 
         <p>{hotel.location}</p>
 
         <div className="hotel-card-footer">
-            <span>⭐ {hotel.rating}</span>
-            <strong>₹{hotel.price} / night</strong>
+          <span>⭐ {hotel.rating}</span>
+          <strong>₹{hotel.price} / night</strong>
+          <Link to={`/edit-hotel/${hotel.id}`} className="edit-hotel-btn">
+            Edit Hotel
+          </Link>
+
+          <button
+            className="delete-hotel-btn"
+            onClick={() => onDelete(hotel.id)}
+          >
+            Delete Hotel
+          </button>
         </div>
       </div>
     </div>

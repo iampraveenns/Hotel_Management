@@ -38,6 +38,25 @@
   margin-bottom: 18px;
 }
 
+.edit-hotel-btn {
+  padding: 8px 14px;
+  background: #6747f5;
+  color: white;
+  text-decoration: none;
+  border-radius: 7px;
+  font-size: 13px;
+}
+
+.delete-hotel-btn {
+  padding: 8px 14px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
 .hotel-card-footer {
   display: flex;
   justify-content: space-between;
@@ -49,5 +68,18 @@
 }
 
 .hotel-card-footer strong {
+  color: #6747f5;
+}
+
+.hotel-name-link {
+  color: #222;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+  margin: 10px 0;
+}
+
+.hotel-name-link:hover {
   color: #6747f5;
 }

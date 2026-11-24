@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 import "./Home.css";
+import HotelCard from "../components/hotel/HotelCard";
 
 const Home = () => {
+  const { hotels } = useOutletContext();
+
   return (
     <div className="home">
       <section className="hero">
@@ -16,7 +20,7 @@ const Home = () => {
 
           <p className="hero-description">
             Discover Comfortable hotels, explore amazing destinations and find
-            the perfecct place for your next stay.
+            the perfect place for your next stay.
           </p>
 
           <div className="hero-actions">
@@ -55,7 +59,7 @@ const Home = () => {
         </div>
 
         <div className="featured-grid">
-          <div className="featured-card">
+          {/* <div className="featured-card">
             <img
               src="https://images.pexels.com/photos/10603648/pexels-photo-10603648.jpeg"
               alt="Luxury hotel"
@@ -98,7 +102,10 @@ const Home = () => {
                 <strong>₹3,200 / night</strong>
               </div>
             </div>
-          </div>
+          </div> */}
+          {hotels.slice(0, 3).map((hotel) => (
+            <HotelCard key={hotel.id} hotel={hotel} />
+          ))}
         </div>
       </section>
     </div>
