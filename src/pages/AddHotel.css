@@ -1,0 +1,57 @@
+
+.add-hotel-page {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+}
+
+.add-hotel-page h1 {
+  color: #25213f;
+  margin-bottom: 10px;
+}
+
+.add-hotel-page p {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.hotel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.hotel-form label {
+  font-weight: 600;
+  color: #444;
+  margin-top: 8px;
+}
+
+.hotel-form input,
+.hotel-form select {
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+.hotel-form input:focus,
+.hotel-form select:focus {
+  outline: none;
+  border-color: #6747f5;
+}
+
+.hotel-form button {
+  margin-top: 15px;
+  padding: 14px;
+  background: #6747f5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 
 import "./HotelListing.css";
-import hotels from "../data/hotels";
 import HotelCard from "../components/hotel/HotelCard";
 
 const HotelListing = () => {
@@ -9,6 +9,7 @@ const HotelListing = () => {
   const [priceRange, setPriceRange] = useState("all");
   const [sortBy, setSortBy] = useState("recommended");
   const [currentPage, setCurrentPage] = useState(1);
+  const {hotels} = useOutletContext()
 
   const hotelsPerPage = 4;
 

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import HotelListing from "../pages/HotelListing";
+import AddHotel from "../pages/AddHotel";
 
 const AppRoutes = () => {
   return (
@@ -11,7 +12,7 @@ const AppRoutes = () => {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/hotels" element={<HotelListing />} />
-          <Route path="/add-hotels" element={<h1>Add Hotel Page</h1>} />
+          <Route path="/add-hotel" element={<AddHotel />} />
           <Route path="/login" element={<h1>Login Page</h1>} />
         </Route>
       </Routes>
