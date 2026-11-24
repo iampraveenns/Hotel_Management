@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
-import { useOutletContext } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import { useState } from "react";
 
 import "./Home.css";
 import HotelCard from "../components/hotel/HotelCard";
 
 const Home = () => {
   const { hotels } = useOutletContext();
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    navigate(`/hotels?search=${encodeURIComponent(searchTerm)}`);
+  };
 
   return (
     <div className="home">
@@ -39,10 +45,17 @@ const Home = () => {
         <div className="search-box">
           <div className="search-input">
             <label>Destination</label>
-            <input type="text" placeholder="Enter Hotel name or location" />
+            <input
+              type="text"
+              placeholder="Enter Hotel name or location"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
 
-          <button className="search-button">Search Hotels</button>
+          <button onClick={handleSearch} className="search-button">
+            Search Hotels
+          </button>
         </div>
       </section>
 

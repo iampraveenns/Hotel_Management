@@ -13,30 +13,45 @@ const AddHotel = () => {
     image: "",
   });
 
-  const {hotels, setHotels} = useOutletContext()
-  const Navigate = useNavigate()
+  const { hotels, setHotels } = useOutletContext();
+  const Navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
-    })
-  }
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    
-    const newHotel = {
-        ...formData,
-        id: Date.now(),
-        price: Number(formData.price),
-        rating: Number(formData.rating),
+    e.preventDefault();
+
+    if(!formData.name.trim() || !formData.location.trim()) {
+      alert("Please enter hotel name and location.")
+      return
     }
 
-    setHotels([...hotels, newHotel])
-    alert("Hotel details submitted Successfully!")
-    Navigate("/hotels")
-  }
+    if(Number(formData.price) <= 0) {
+      alert("Price must be greater than zero.")
+      return
+    }
+
+    if(Number(formData.rating) < 1 || Number(formData.rating) > 5) {
+      alert("Rating must be between 1 and 5.")
+      return
+    }
+
+    const newHotel = {
+      ...formData,
+      id: Date.now(),
+      price: Number(formData.price),
+      rating: Number(formData.rating),
+    };
+
+    setHotels([...hotels, newHotel]);
+    alert("Hotel details submitted Successfully!");
+    Navigate("/hotels");
+  };
 
   return (
     <div className="add-hotel-page">
@@ -101,7 +116,19 @@ const AddHotel = () => {
         </select>
 
         <label>Image URL</label>
-        <input name="image" value={formData.image} onChange={handleChange} placeholder="Enter image URL" required/>
+        <input
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
+          placeholder="Enter image URL"
+          required
+        />
+        {formData.image && (
+          <div className="image-preview">
+            <p>Image Preview</p>
+            <img src={formData.image} alt="Hotel Preview" />
+          </div>
+        )}
 
         <button type="submit">Add Hotel</button>
       </form>

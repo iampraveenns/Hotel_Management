@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import "./HotelListing.css";
 import HotelCard from "../components/hotel/HotelCard";
 
 const HotelListing = () => {
-  const [search, setSearch] = useState("");
   const [priceRange, setPriceRange] = useState("all");
   const [sortBy, setSortBy] = useState("recommended");
   const [currentPage, setCurrentPage] = useState(1);
-  const {hotels, setHotels} = useOutletContext()
+  const { hotels, setHotels } = useOutletContext();
+  const [searchParams] = useSearchParams();
+  const initialSearch = searchParams.get("search") || "";
+  const [search, setSearch] = useState(initialSearch);
+  const [category, setCategory] = useState("All");
 
   const hotelsPerPage = 4;
 
@@ -26,7 +30,9 @@ const HotelListing = () => {
         hotel.price <= 5000) ||
       (priceRange === "above5000" && hotel.price > 5000);
 
-    return matchSearch && matchesPrice;
+    const matchesCategory = category === "All" || hotel.category === category;
+
+    return matchSearch && matchesPrice && matchesCategory;
   });
 
   const sortedHotels = [...filteredHotels].sort((a, b) => {
@@ -38,13 +44,21 @@ const HotelListing = () => {
 
   const handleDelete = (id) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this hotel?"
-    )
+      "Are you sure you want to delete this hotel?",
+    );
 
-    if(confirmDelete) {
-      setHotels(prevHotels => prevHotels.filter(hotel => hotel.id !== id))
+    if (confirmDelete) {
+      setHotels((prevHotels) => prevHotels.filter((hotel) => hotel.id !== id));
     }
-  }
+  };
+
+  const clearFilters = () => {
+    setSearch("");
+    setPriceRange("all");
+    setCategory("All");
+    setSortBy("recommended");
+    setCurrentPage(1);
+  };
 
   const totalPages = Math.ceil(sortedHotels.length / hotelsPerPage);
   const startIndex = (currentPage - 1) * hotelsPerPage;
@@ -54,8 +68,8 @@ const HotelListing = () => {
   );
 
   useEffect(() => {
-    setCurrentPage(1)
-  }, [search, priceRange, sortBy])
+    setCurrentPage(1);
+  }, [search, priceRange, sortBy, category]);
 
   return (
     <div className="hotel-listing">
@@ -85,11 +99,28 @@ const HotelListing = () => {
             <option value="2000to5000">₹2,000 - ₹5,000</option>
             <option value="above5000">Above ₹5,000</option>
           </select>
+
+          <p>Category</p>
+
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="All">All Categories</option>
+            <option value="Luxury">Luxury</option>
+            <option value="Resort">Resort</option>
+            <option value="Premium">Premium</option>
+            <option value="Budget">Budget</option>
+          </select>
+
+          <button className="clear-filter-btn" onClick={clearFilters}>
+            Clear All Filters
+          </button>
         </aside>
 
         <div className="hotel-results">
           <div className="results-header">
-            <h2>Available Hotels</h2>
+            <h2>Available Hotels ({filteredHotels.length})</h2>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
               <option value="recommended">Sort by: Recommended</option>
               <option value="low">Price: Low to High</option>
@@ -99,13 +130,20 @@ const HotelListing = () => {
           </div>
 
           <div className="hotel-grid">
-            {currentHotels.map((hotel) => (
-              <HotelCard 
-              key={hotel.id} 
-              hotel={hotel}
-              onDelete={handleDelete} 
-              />
-            ))}
+            {currentHotels.length > 0 ? (
+              currentHotels.map((hotel) => (
+                <HotelCard
+                  key={hotel.id}
+                  hotel={hotel}
+                  onDelete={handleDelete}
+                />
+              ))
+            ) : (
+              <div className="empty-message">
+                <h3>No Hotels Found</h3>
+                <p>Try changing your search or filters.</p>
+              </div>
+            )}
           </div>
 
           {totalPages > 1 && (
@@ -130,11 +168,11 @@ const HotelListing = () => {
             </div>
           )}
 
-          {currentHotels.length === 0 && (
+          {/* {currentHotels.length === 0 && (
             <p className="empty-message">
               No hotels found. Try another search.
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </div>
