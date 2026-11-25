@@ -61,13 +61,13 @@ NamlaStay provides an intuitive interface to explore hotels, manage hotel listin
 **1. Clone the repository**
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/iampraveenns/Hotel_Management.git
 ```
 
 **2. Navigate to the project directory**
 
 ```bash
-cd <PROJECT_FOLDER_NAME>
+cd Hotel_Management
 ```
 
 **3. Install dependencies**
