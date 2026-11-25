@@ -3,7 +3,7 @@ import "./HotelCard.css";
 import { Link } from "react-router-dom";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 
-const HotelCard = ({ hotel, onDelete }) => {
+const HotelCard = ({ hotel, onDelete, showAction = true }) => {
   return (
     <div className="hotel-card">
       <img src={hotel.image} alt={hotel.name} />
@@ -17,7 +17,7 @@ const HotelCard = ({ hotel, onDelete }) => {
 
         <p>{hotel.location}</p>
 
-        <p className="hotel-desscription">
+        <p className="hotel-description">
           {hotel.description?.length > 100
             ? `${hotel.description.substring(0, 100)}`
             : hotel.description}
@@ -29,25 +29,27 @@ const HotelCard = ({ hotel, onDelete }) => {
             <strong>₹{hotel.price} / night</strong>
           </div>
 
-          <div className="hotel-actions">
-            <Link
-              to={`/edit-hotel/${hotel.id}`}
-              className="hotel-action-btn edit-hotel-btn"
-              title="Edit Hotel"
-              aria-label="Edit Hotel"
-            >
-              <FiEdit2 size={18} />
-            </Link>
+          {showAction && (
+            <div className="hotel-actions">
+              <Link
+                to={`/edit-hotel/${hotel.id}`}
+                className="hotel-action-btn edit-hotel-btn"
+                title="Edit Hotel"
+                aria-label="Edit Hotel"
+              >
+                <FiEdit2 size={18} />
+              </Link>
 
-            <button
-              className="hotel-action-btn delete-hotel-btn"
-              onClick={() => onDelete(hotel.id)}
-              title="Delete Hotel"
-              aria-label="Delete Hotel"
-            >
-              <FiTrash2 size={18} />
-            </button>
-          </div>
+              <button
+                className="hotel-action-btn delete-hotel-btn"
+                onClick={() => onDelete(hotel.id)}
+                title="Delete Hotel"
+                aria-label="Delete Hotel"
+              >
+                <FiTrash2 size={18} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

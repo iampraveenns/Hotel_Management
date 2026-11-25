@@ -126,7 +126,11 @@ const Home = () => {
             </div>
           </div> */}
             {hotels.slice(0, 3).map((hotel) => (
-              <HotelCard key={hotel.id} hotel={hotel} />
+              <HotelCard 
+              key={hotel.id} 
+              hotel={hotel} 
+              showAction={false}
+              />
             ))}
           </div>
         </section>
