@@ -83,3 +83,11 @@
 .hotel-name-link:hover {
   color: #6747f5;
 }
+
+.hotel-description {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.6;
+  margin-top: 8px;
+  min-height: 42px;
+}

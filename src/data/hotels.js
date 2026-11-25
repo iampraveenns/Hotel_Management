@@ -1,4 +1,3 @@
-
 const hotels = [
   {
     id: 1,
@@ -8,6 +7,9 @@ const hotels = [
     rating: 4.8,
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
     category: "Luxury",
+    description: "A comfortable luxury hotel with modern facilities, spacious rooms, and attentive service.",
+    latitude: "11.0168",
+    longitude: "76.9558",
   },
   {
     id: 2,
@@ -17,6 +19,9 @@ const hotels = [
     rating: 4.6,
     image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
     category: "Resort",
+    description: "A cozy boutique stay in the heart of RS Puram with easy access to dining and shopping.",
+    latitude: "11.0086",
+    longitude: "76.9516",
   },
   {
     id: 3,
@@ -26,6 +31,9 @@ const hotels = [
     rating: 4.7,
     image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d",
     category: "Premium",
+    description: "Modern business suites near Avinashi Road offering high-speed Wi-Fi, meeting space, and quiet rooms.",
+    latitude: "11.0256",
+    longitude: "77.0029",
   },
   {
     id: 4,
@@ -35,6 +43,9 @@ const hotels = [
     rating: 4.9,
     image: "https://images.unsplash.com/photo-1511895426328-dc8714191300",
     category: "Resort",
+    description: "A scenic hill retreat surrounded by tea estates and cool mountain air, ideal for weekend getaways.",
+    latitude: "10.3269",
+    longitude: "76.9554",
   },
   {
     id: 5,
@@ -44,6 +55,9 @@ const hotels = [
     rating: 4.3,
     image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791",
     category: "Budget",
+    description: "Clean, budget-friendly rooms close to major transit hubs with essential amenities for travelers.",
+    latitude: "11.0183",
+    longitude: "76.9674",
   },
   {
     id: 6,
@@ -53,6 +67,9 @@ const hotels = [
     rating: 4.9,
     image: "https://images.unsplash.com/photo-1582719508461-905c673771fd",
     category: "Luxury",
+    description: "A relaxed courtyard resort featuring landscaped gardens, dining options, and family-friendly spaces.",
+    latitude: "11.0797",
+    longitude: "77.0014",
   },
 ];
 

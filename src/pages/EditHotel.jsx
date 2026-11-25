@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams, useOutletContext } from "react-router-dom";
+
+import HotelForm from "../components/hotel/HotelForm";
 
 const EditHotel = () => {
   const { id } = useParams();
@@ -14,17 +16,36 @@ const EditHotel = () => {
     rating: "",
     category: "",
     image: "",
+    description: "",
+    latitude: "",
+    longitude: "",
   });
+
+  useEffect(() => {
+    const existingHotel = hotels.find(
+      item => item.id === Number(id)
+    )
+
+    if (existingHotel) {
+      setFormData({
+        ...existingHotel,
+        description: existingHotel.description || "",
+        latitude: existingHotel.latitude ?? "",
+        longitude: existingHotel.longitude ?? "",
+      });
+    }
+  }, [id]);
 
   if (!hotel) {
     return <h2>Hotel not found!</h2>;
   }
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.value]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -34,6 +55,8 @@ const EditHotel = () => {
       ...formData,
       price: Number(formData.price),
       rating: Number(formData.rating),
+      latitude: Number(formData.latitude),
+      longitude: Number(formData.longitude),
     };
 
     setHotels(
@@ -43,65 +66,14 @@ const EditHotel = () => {
     alert("Hotel updated successfully!");
     navigate("/hotels");
   };
+
   return (
-    <div>
-      <h1>Edit Hotel</h1>
-      <p>Update the hotel information.</p>
-
-      <form className="hotel-form" onSubmit={handleChange}>
-        <label>Hotel Name</label>
-        <input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-
-        <label>Location</label>
-        <input
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-          required
-        />
-
-        <label>Price per Night</label>
-        <input
-          type="number"
-          name="price"
-          value={formData.price}
-          onChange={handleChange}
-          min="1"
-          required
-        />
-
-        <label>Rating</label>
-        <input
-          type="number"
-          name="rating"
-          value={formData.rating}
-          onChange={handleChange}
-          min="1"
-          max="5"
-          step="0.1"
-          required
-        />
-
-        <label>Category</label>
-        <select name="category" value={formData.category} required>
-          <option value="">Select Category</option>
-          <option value="Budget">Budget</option>
-          <option value="Premium">Premium</option>
-          <option value="Luxury">Luxury</option>
-          <option value="Resort">Resort</option>
-        </select>
-
-        <label>Image URL</label>
-        <input name="image" value={formData.image}  onChange={handleChange} required/>
-
-        <button type="submit">Save Changes</button>
-      </form>
-    </div>
+    <HotelForm
+      formData={formData}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      isEditing={true}
+    />
   );
 };
 

@@ -16,6 +16,12 @@ const HotelCard = ({ hotel, onDelete }) => {
 
         <p>{hotel.location}</p>
 
+        <p className="hotel-desscription">
+          {hotel.description?.length > 100
+            ? `${hotel.description.substring(0, 100)}`
+            : hotel.description}
+        </p>
+
         <div className="hotel-card-footer">
           <span>⭐ {hotel.rating}</span>
           <strong>₹{hotel.price} / night</strong>

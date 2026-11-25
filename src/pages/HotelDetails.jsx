@@ -1,6 +1,7 @@
 import { useOutletContext, useParams, Link } from "react-router-dom";
 
 import "./HotelDetails.css"
+import HotelMap from "../components/hotel/HotelMap";
 
 const HotelDetails = () => {
   const { id } = useParams();
@@ -17,8 +18,9 @@ const HotelDetails = () => {
         <p>Category: {hotel.category}</p>
         <p>Ratings: ⭐ {hotel.rating}</p>
         <h3>₹{hotel.price}</h3>
+        <HotelMap hotel={hotel}/>
 
-        <Link to="/">Back to Hotels</Link>
+        <Link to="/hotels">Back to Hotels</Link>
     </div>
   )
 };
