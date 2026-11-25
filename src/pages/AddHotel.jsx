@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import "./AddHotel.css";
 import HotelForm from "../components/hotel/HotelForm";
@@ -61,13 +62,21 @@ const AddHotel = () => {
   };
 
   return (
-
-    <HotelForm
-      formData={formData}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-      isEditing={false}
-    />
+    <>
+    <Helmet>
+            <title>Add a New Hotel | NamlaStay</title>
+            <meta
+              name="description"
+              content="Add your hotel to NamlaStay. Enter hotel details, upload images, and provide location coordinates to create a new hotel listing."
+            />
+          </Helmet>
+      <HotelForm
+        formData={formData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        isEditing={false}
+      />
+    </>
   );
 };
 
