@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 
 import "./HotelListing.css";
 import HotelCard from "../components/hotel/HotelCard";
+import Pagination from "../components/common/Pagination";
 
 const HotelListing = () => {
   const [priceRange, setPriceRange] = useState("all");
@@ -51,7 +52,7 @@ const HotelListing = () => {
       setHotels((prevHotels) => prevHotels.filter((hotel) => hotel.id !== id));
     }
 
-    alert("Hotel deleted successfully!")
+    alert("Hotel deleted successfully!");
   };
 
   const clearFilters = () => {
@@ -149,25 +150,31 @@ const HotelListing = () => {
           </div>
 
           {totalPages > 1 && (
-            <div className="pagination">
-              <button
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage(currentPage - 1)}
-              >
-                Previous
-              </button>
+            // <div className="pagination">
+            //   <button
+            //     disabled={currentPage === 1}
+            //     onClick={() => setCurrentPage(currentPage - 1)}
+            //   >
+            //     Previous
+            //   </button>
 
-              <span>
-                Page {currentPage} of {totalPages}
-              </span>
+            //   <span>
+            //     Page {currentPage} of {totalPages}
+            //   </span>
 
-              <button
-                disabled={currentPage === totalPages}
-                onClick={() => setCurrentPage(currentPage + 1)}
-              >
-                Next
-              </button>
-            </div>
+            //   <button
+            //     disabled={currentPage === totalPages}
+            //     onClick={() => setCurrentPage(currentPage + 1)}
+            //   >
+            //     Next
+            //   </button>
+            // </div>
+
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           )}
 
           {/* {currentHotels.length === 0 && (

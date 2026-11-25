@@ -1,5 +1,6 @@
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 import "./Home.css";
 import HotelCard from "../components/hotel/HotelCard";
@@ -14,65 +15,73 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      <section className="hero">
-        <div className="hero-content">
-          <p>Welcome To NamlaStay</p>
+    <>
+      <Helmet>
+        <title>Namla Stay | Find Your Perfect Hotel</title>
+        <meta
+          name="description"
+          content="Explore and discover hotels with Namla Stay. Find comfortable stays at the best prices."
+        />
+      </Helmet>
+      <div className="home">
+        <section className="hero">
+          <div className="hero-content">
+            <p>Welcome To NamlaStay</p>
 
-          <h1>
-            Find Your Perfect
-            <span>Stay Anywhere.</span>
-          </h1>
+            <h1>
+              Find Your Perfect
+              <span>Stay Anywhere.</span>
+            </h1>
 
-          <p className="hero-description">
-            Discover Comfortable hotels, explore amazing destinations and find
-            the perfect place for your next stay.
-          </p>
+            <p className="hero-description">
+              Discover Comfortable hotels, explore amazing destinations and find
+              the perfect place for your next stay.
+            </p>
 
-          <div className="hero-actions">
-            <Link to="/hotels" className="hero-button">
-              Explore Hotels
+            <div className="hero-actions">
+              <Link to="/hotels" className="hero-button">
+                Explore Hotels
+              </Link>
+
+              <Link to="/add-hotel" className="hero-secondary">
+                Add Your Hotel
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="search-section">
+          <div className="search-box">
+            <div className="search-input">
+              <label>Destination</label>
+              <input
+                type="text"
+                placeholder="Enter Hotel name or location"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+
+            <button onClick={handleSearch} className="search-button">
+              Search Hotels
+            </button>
+          </div>
+        </section>
+
+        <section className="featured-section">
+          <div className="section-heading">
+            <div>
+              <p>Our Collection</p>
+              <h2>Featured Hotels</h2>
+            </div>
+
+            <Link to="/hotels" className="view-all">
+              View All Hotels →
             </Link>
-
-            <Link to="/add-hotel" className="hero-secondary">
-              Add Your Hotel
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="search-section">
-        <div className="search-box">
-          <div className="search-input">
-            <label>Destination</label>
-            <input
-              type="text"
-              placeholder="Enter Hotel name or location"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
           </div>
 
-          <button onClick={handleSearch} className="search-button">
-            Search Hotels
-          </button>
-        </div>
-      </section>
-
-      <section className="featured-section">
-        <div className="section-heading">
-          <div>
-            <p>Our Collection</p>
-            <h2>Featured Hotels</h2>
-          </div>
-
-          <Link to="/hotels" className="view-all">
-            View All Hotels →
-          </Link>
-        </div>
-
-        <div className="featured-grid">
-          {/* <div className="featured-card">
+          <div className="featured-grid">
+            {/* <div className="featured-card">
             <img
               src="https://images.pexels.com/photos/10603648/pexels-photo-10603648.jpeg"
               alt="Luxury hotel"
@@ -116,12 +125,13 @@ const Home = () => {
               </div>
             </div>
           </div> */}
-          {hotels.slice(0, 3).map((hotel) => (
-            <HotelCard key={hotel.id} hotel={hotel} />
-          ))}
-        </div>
-      </section>
-    </div>
+            {hotels.slice(0, 3).map((hotel) => (
+              <HotelCard key={hotel.id} hotel={hotel} />
+            ))}
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 
