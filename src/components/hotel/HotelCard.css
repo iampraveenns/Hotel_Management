@@ -1,4 +1,3 @@
-
 .hotel-card {
   background: white;
   border-radius: 14px;
@@ -38,29 +37,18 @@
   margin-bottom: 18px;
 }
 
-.edit-hotel-btn {
-  padding: 8px 14px;
-  background: #6747f5;
-  color: white;
-  text-decoration: none;
-  border-radius: 7px;
-  font-size: 13px;
-}
-
-.delete-hotel-btn {
-  padding: 8px 14px;
-  background: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 7px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
 .hotel-card-footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   font-size: 14px;
+  gap: 16px;
+}
+
+.hotel-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .hotel-card-footer span {
@@ -90,4 +78,59 @@
   line-height: 1.6;
   margin-top: 8px;
   min-height: 42px;
+}
+
+.hotel-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hotel-action-btn {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.edit-hotel-btn {
+  color: #2563eb;
+  background: #eff6ff;
+  text-decoration: none;
+}
+
+.edit-hotel-btn:hover {
+  background: #dbeafe;
+}
+
+.delete-hotel-btn {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.delete-hotel-btn:hover {
+  background: #fee2e2;
+}
+
+@media (min-width: 1024px) {
+  .hotel-card-footer {
+    width: 100%;
+    gap: 30px;
+  }
+
+  .hotel-card-meta {
+    flex: 1;
+    gap: 35px;
+  }
+
+  .hotel-actions {
+    margin-left: auto;
+    gap: 14px;
+    flex-shrink: 0;
+  }
 }

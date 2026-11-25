@@ -50,9 +50,8 @@ const HotelListing = () => {
 
     if (confirmDelete) {
       setHotels((prevHotels) => prevHotels.filter((hotel) => hotel.id !== id));
+      alert("Hotel deleted successfully!");
     }
-
-    alert("Hotel deleted successfully!");
   };
 
   const clearFilters = () => {

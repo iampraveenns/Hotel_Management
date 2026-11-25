@@ -1,6 +1,7 @@
 import "./HotelCard.css";
 
 import { Link } from "react-router-dom";
+import { FiEdit2, FiTrash2 } from "react-icons/fi";
 
 const HotelCard = ({ hotel, onDelete }) => {
   return (
@@ -23,18 +24,30 @@ const HotelCard = ({ hotel, onDelete }) => {
         </p>
 
         <div className="hotel-card-footer">
-          <span>⭐ {hotel.rating}</span>
-          <strong>₹{hotel.price} / night</strong>
-          <Link to={`/edit-hotel/${hotel.id}`} className="edit-hotel-btn">
-            Edit Hotel
-          </Link>
+          <div className="hotel-card-meta">
+            <span>⭐ {hotel.rating}</span>
+            <strong>₹{hotel.price} / night</strong>
+          </div>
 
-          <button
-            className="delete-hotel-btn"
-            onClick={() => onDelete(hotel.id)}
-          >
-            Delete Hotel
-          </button>
+          <div className="hotel-actions">
+            <Link
+              to={`/edit-hotel/${hotel.id}`}
+              className="hotel-action-btn edit-hotel-btn"
+              title="Edit Hotel"
+              aria-label="Edit Hotel"
+            >
+              <FiEdit2 size={18} />
+            </Link>
+
+            <button
+              className="hotel-action-btn delete-hotel-btn"
+              onClick={() => onDelete(hotel.id)}
+              title="Delete Hotel"
+              aria-label="Delete Hotel"
+            >
+              <FiTrash2 size={18} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
